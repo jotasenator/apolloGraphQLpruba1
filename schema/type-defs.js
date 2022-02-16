@@ -1,6 +1,7 @@
 const {gql} = require("apollo-server");
 
 const typeDefs = gql`
+
     type User{
         id:ID!
         name:String!
@@ -25,12 +26,31 @@ const typeDefs = gql`
         movie(name:String!):Movie!
     }
 
+    input CreateUserInput{
+        name:String!
+        username:String!
+        age:Int!
+        nationality:Nationality = BRAZIL        
+    }
+
+    input UpdateUserNameInput{
+        id:ID!
+        newUserName:String!       
+    }
+
+    type Mutation{
+        createUser(input:CreateUserInput!):User
+        updateUserName(input:UpdateUserNameInput!):User
+    }
+
     enum Nationality{
         CANADA
         BRAZIL
         USA
         GERMANY
         CHILE
+        CUBA
+        Cuba 
     }
  `;
 
